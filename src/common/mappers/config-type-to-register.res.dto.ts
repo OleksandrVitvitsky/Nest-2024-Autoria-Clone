@@ -3,7 +3,7 @@ import { RegisterReqDto } from '../../modules/auth/dto/req/register.req.dto';
 import { UserRoleEnum } from '../../modules/users/enum/role.enum';
 import { UserAccountTypeEnum } from '../../modules/users/enum/user-account-type.enum';
 
-export class DtoMapperToOtherType {
+export class ConfigTypeToRegisterResDto {
   public static ConfigTypeToRegisterReqDto(config: SuperUser): RegisterReqDto {
     return {
       userName: config.userName,

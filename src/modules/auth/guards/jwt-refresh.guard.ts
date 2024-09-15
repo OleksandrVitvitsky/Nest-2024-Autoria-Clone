@@ -8,7 +8,7 @@ import { Reflector } from '@nestjs/core';
 
 import { RefreshTokenRepository } from '../../repository/services/refresh-token.repository';
 import { UserRepository } from '../../repository/services/user.repository';
-import { UserMapper } from '../../../common/helpers/user.mapper';
+import { UserMapper } from '../../../common/mappers/user.mapper';
 import { TokenType } from '../enums/token-type.enum';
 import { TokenService } from '../services/token.service';
 

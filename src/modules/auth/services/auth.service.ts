@@ -9,7 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { RefreshTokenRepository } from '../../repository/services/refresh-token.repository';
 import { UserRepository } from '../../repository/services/user.repository';
 import { UserRoleEnum } from '../../users/enum/role.enum';
-import { UserMapper } from '../../../common/helpers/user.mapper';
+import { UserMapper } from '../../../common/mappers/user.mapper';
 import { UsersService } from '../../users/users.service';
 import { LoginReqDto } from '../dto/req/login.req.dto';
 import { RegisterReqDto } from '../dto/req/register.req.dto';

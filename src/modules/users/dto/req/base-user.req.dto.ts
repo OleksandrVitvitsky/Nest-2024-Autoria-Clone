@@ -1,15 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
-  IsEmail, IsEnum,
+  IsEmail,
+  IsEnum,
   IsIn,
   IsNotEmpty,
   IsOptional,
   IsPhoneNumber,
   IsString,
   Length,
-  Matches
-} from "class-validator";
+  Matches,
+} from 'class-validator';
 
 import { TransformHelper } from '../../../../common/helpers/transform.helper';
 import { UserRoleEnum } from '../../enum/role.enum';
@@ -55,32 +56,21 @@ export class BaseUserReqDto {
   image?: string;
 
   @ApiProperty({
-    description: 'Role of the user. Allowed values:  seller or buyer',
+    description: 'Роль користувача. Можливі значення: buyer, seller',
     enum: ['seller', 'buyer'],
   })
-  @Transform(TransformHelper.trim)
-  @Transform(TransformHelper.toLowerCase)
-  @IsString()
   @IsEnum(UserRoleEnum)
-  @IsNotEmpty({ message: 'The role must not be empty' })
+  @IsNotEmpty({ message: 'Роль повинна бути обраною' })
   @IsIn([UserRoleEnum.BUYER, UserRoleEnum.SELLER], {
-    message: 'Role must be either buyer or seller',
+    message: 'Роль повинна бути buyer або seller',
   })
   role: UserRoleEnum;
-
-
-
 
   @ApiProperty({
     description: 'Account type of user. Allowed values:  BASIC or PREMIUM',
     enum: ['BASIC', 'PREMIUM'],
   })
-  @Transform(TransformHelper.trim)
-  @Transform(TransformHelper.toLowerCase)
-  @IsString()
   @IsEnum(UserAccountTypeEnum)
-  @IsIn([UserAccountTypeEnum.BASIC, UserAccountTypeEnum.PREMIUM], {
-    message: 'Role must be either buyer or seller',
-  })
+  @IsIn([UserAccountTypeEnum.BASIC])
   accountType?: UserAccountTypeEnum;
 }

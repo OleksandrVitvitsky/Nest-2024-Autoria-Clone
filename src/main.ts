@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { DtoMapperToOtherType } from './common/helpers/dtoMapperToOtherType';
+import { ConfigTypeToRegisterResDto } from './common/mappers/config-type-to-register.res.dto';
 import { AppConfig, SuperUser } from './config/config.type';
 import { AppModule } from './modules/app.module';
 import { AuthService } from './modules/auth/services/auth.service';
@@ -18,7 +18,7 @@ async function bootstrap() {
 
   const authService = app.get<AuthService>(AuthService);
   await authService.register(
-    DtoMapperToOtherType.ConfigTypeToRegisterReqDto(superUserConfig),
+    ConfigTypeToRegisterResDto.ConfigTypeToRegisterReqDto(superUserConfig),
   );
 
   const config = new DocumentBuilder()

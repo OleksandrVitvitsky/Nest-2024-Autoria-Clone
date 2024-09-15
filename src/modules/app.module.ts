@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
 import configuration from '../config/configuration';
+import { AdsModule } from "./advertisements/ads.module";
 import { AuthModule } from './auth/auth.module';
 import { FileStorageModule } from './file-storage/file-storage.module';
 import { PostgresModule } from './postgres/postgres.module';
@@ -21,6 +22,7 @@ import { UsersModule } from './users/users.module';
     RedisModule,
     PostgresModule,
     FileStorageModule,
+    AdsModule,
   ],
   controllers: [],
   providers: [],

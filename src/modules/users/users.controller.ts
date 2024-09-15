@@ -25,7 +25,7 @@ import {
 
 import { ApiFile } from '../../common/decorators/api-file.decorator';
 import { RolesGuard } from '../../common/guards/roles.guard';
-import { UserMapper } from '../../common/helpers/user.mapper';
+import { UserMapper } from '../../common/mappers/user.mapper';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { RegisterManagerReqDto } from '../auth/dto/req/register-manager.req.dto';
 import { AuthResDto } from '../auth/dto/res/auth.res.dto';
