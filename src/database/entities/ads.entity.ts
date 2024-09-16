@@ -2,7 +2,7 @@ import { Column, Entity, ManyToOne } from 'typeorm';
 
 import { CurrencyEnum } from '../../common/global-enums/currency.enum';
 import { TableNameEnum } from './enums/table-name.enum';
-import { ModelEntity } from './model.entity';
+import { CarEntity } from './car.entity';
 import { CreateUpdateModel } from './models/create-update.model';
 import { UserEntity } from './user.entity';
 
@@ -35,8 +35,8 @@ export class AdsEntity extends CreateUpdateModel {
   // @Column()
   // brand: string;
 
-  @ManyToOne(() => ModelEntity, (model) => model.ads)
-  model: ModelEntity;
+  @ManyToOne(() => CarEntity, (model) => model.ads)
+  model: CarEntity;
 
   @Column('simple-array', { nullable: true })
   photos?: string[];

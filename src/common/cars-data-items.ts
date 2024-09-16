@@ -1,4 +1,4 @@
-import { IBrandModels } from '../modules/models/interfaces/brand-model.interface';
+import { IBrandModels } from '../modules/cars/interfaces/brand-model.interface';
 
 export const carsDataItems: IBrandModels = [
   {

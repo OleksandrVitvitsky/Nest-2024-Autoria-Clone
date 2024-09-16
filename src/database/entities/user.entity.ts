@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
 
 import { UserRoleEnum } from '../../modules/users/enum/role.enum';
 import { UserAccountTypeEnum } from '../../modules/users/enum/user-account-type.enum';
@@ -11,7 +11,7 @@ import { RefreshTokenEntity } from './refresh-token.entity';
 export class UserEntity extends CreateUpdateModel {
   @Column('text')
   userName: string;
-
+  @Index()
   @Column('text', { unique: true })
   email: string;
 

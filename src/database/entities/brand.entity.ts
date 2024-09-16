@@ -1,14 +1,15 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, Index, OneToMany } from "typeorm";
 
 import { TableNameEnum } from './enums/table-name.enum';
-import { ModelEntity } from './model.entity';
-import { CreateUpdateModel } from './models/create-update.model'; // імпортуємо ModelEntity
+import { CarEntity } from './car.entity';
+import { CreateUpdateModel } from './models/create-update.model';
 
 @Entity(TableNameEnum.BRANDS)
 export class BrandEntity extends CreateUpdateModel {
+  @Index()
   @Column('text')
   name: string;
 
-  @OneToMany(() => ModelEntity, (model) => model.brand)
-  models: ModelEntity[];
+  @OneToMany(() => CarEntity, (model) => model.brand)
+  models: CarEntity[];
 }

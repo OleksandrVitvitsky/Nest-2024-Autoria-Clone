@@ -1,8 +1,8 @@
-import { ModelEntity } from '../../database/entities/model.entity';
+import { CarEntity} from "../../database/entities/car.entity";
 import { CarsResDto } from '../../modules/cars/res/cars.res.dto';
 
 export class CarsMapper {
-  static toResponseDto(model: ModelEntity): CarsResDto {
+  static toResponseDto(model: CarEntity): CarsResDto {
     return {
       id: model.id,
       name: model.name,
@@ -13,7 +13,7 @@ export class CarsMapper {
     };
   }
 
-  static toResponseDtos(models: ModelEntity[]): CarsResDto[] {
+  static toResponseDtos(models: CarEntity[]): CarsResDto[] {
     return models.map(CarsMapper.toResponseDto);
   }
 }

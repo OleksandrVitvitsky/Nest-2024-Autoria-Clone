@@ -1,8 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 
 import { AdsRepository } from './services/adsRepositoty';
-import { BrandRepository } from './services/brandRepositoty';
-import { ModelRepository } from './services/modelRepositoty';
+import { BrandRepository, CarRepository } from './services/carRepositoty';
 import { RefreshTokenRepository } from './services/refresh-token.repository';
 import { UserRepository } from './services/user.repository';
 
@@ -10,7 +9,7 @@ const repositories = [
   RefreshTokenRepository,
   UserRepository,
   AdsRepository,
-  ModelRepository,
+  CarRepository,
   BrandRepository,
 ];
 

@@ -3,7 +3,7 @@ import { Transform, Type } from 'class-transformer';
 import { IsArray, IsString, ValidateNested } from 'class-validator';
 
 import { TransformHelper } from '../../../common/helpers/transform.helper';
-import { ModelReqDto } from '../../models/req/model.req.dto';
+import { ModelReqDto } from './model.req.dto';
 
 export class CreateCarsReqDto {
   @ApiProperty({
@@ -11,10 +11,12 @@ export class CreateCarsReqDto {
     description: 'Назва бренду',
   })
   @IsString()
+  @Transform(TransformHelper.toLowerCaseArray)
+  @Transform(TransformHelper.trim)
   name: string;
 
   @ApiProperty({
-    type: () => [ModelReqDto], // Використовуємо функцію для визначення типу
+    type: () => [ModelReqDto],
     description: 'Масив моделей автомобілів для бренду',
   })
   @IsArray()
