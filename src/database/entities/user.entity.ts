@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 
 import { UserRoleEnum } from '../../modules/users/enum/role.enum';
 import { UserAccountTypeEnum } from '../../modules/users/enum/user-account-type.enum';
-//import { CarEntity } from './car.entity';
+import { AdsEntity } from './ads.entity';
 import { TableNameEnum } from './enums/table-name.enum';
 import { CreateUpdateModel } from './models/create-update.model';
 import { RefreshTokenEntity } from './refresh-token.entity';
@@ -37,6 +37,10 @@ export class UserEntity extends CreateUpdateModel {
   @OneToMany(() => RefreshTokenEntity, (entity) => entity.user)
   refreshTokens?: RefreshTokenEntity[];
 
+  @OneToMany(() => AdsEntity, (ads) => ads.user)
+  ads: AdsEntity[];
+
+  //
   //TODO
   // @Column({ type: 'boolean', default: false })
   // block: boolean;

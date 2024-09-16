@@ -5,7 +5,7 @@ import { CurrencyEnum } from '../enum/currency.enum';
 
 export class BaseAdsResDto {
   @IsUUID()
-  id: number;
+  id: string;
   title: string;
   description: string;
   price: number;
@@ -15,11 +15,12 @@ export class BaseAdsResDto {
   condition: string;
   year: number;
   mileage: number;
-  brand: string;
-  model: string;
+  // brand: string;
+  @IsUUID()
+  modelId: string;
   photos: string[];
   @IsUUID()
-  userId: number;
+  userId: string;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -100,11 +100,11 @@ export class BaseAdsReqDto {
   @IsOptional()
   isNegotiable?: boolean;
 
-  @ApiProperty({ example: 1, description: 'Ідентифікатор бренду' })
-  @IsInt()
-  @Type(() => Number)
-  @IsNotEmpty({ message: 'Бренд повинен бути обраний' })
-  brandId: number;
+  // @ApiProperty({ example: 1, description: 'Ідентифікатор бренду' })
+  // @IsInt()
+  // @Type(() => Number)
+  // @IsNotEmpty({ message: 'Бренд повинен бути обраний' })
+  // brandId: number;
 
   @ApiProperty({ example: 5, description: 'Ідентифікатор моделі автомобіля' })
   @IsInt()

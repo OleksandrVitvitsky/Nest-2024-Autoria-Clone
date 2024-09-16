@@ -1,9 +1,5 @@
-import { ConfigStaticService } from '../../config/config-static';
-import { UserEntity } from '../../database/entities/user.entity';
+import { AdsEntity } from '../../database/entities/ads.entity';
 import { BaseAdsResDto } from '../../modules/advertisements/res/base-ads.res.dto';
-import { IJwtPayload } from '../../modules/auth/interfaces/jwt-payload.interface';
-import { IUserData } from '../../modules/auth/interfaces/user-data.interface';
-import { UserResDto } from '../../modules/users/dto/res/user.res.dto';
 
 export class AdsMapper {
   public static toResponseDTO(data: AdsEntity): BaseAdsResDto {
@@ -17,10 +13,10 @@ export class AdsMapper {
       condition: data.condition,
       year: data.year,
       mileage: data.mileage,
-      brand: data.brand,
-      model: data.model,
+      //brand: data.brand,
+      modelId: data.model.id,
       photos: data.photos,
-      userId: data.userId,
+      userId: data.user.id,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
     };

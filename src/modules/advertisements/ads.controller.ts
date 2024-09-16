@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { IUserData } from '../auth/interfaces/user-data.interface';
-import { AdsService } from "./ads.service";
+import { AdsService } from './ads.service';
 import { BaseAdsReqDto } from './req/base-ads.req.dto';
 import { BaseAdsResDto } from './res/base-ads.res.dto';
 

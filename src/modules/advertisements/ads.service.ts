@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
+import { AdsMapper } from '../../common/mappers/ads.mapper';
 import { IUserData } from '../auth/interfaces/user-data.interface';
 import { AdsRepository } from '../repository/services/adsRepositoty';
 import { BaseAdsReqDto } from './req/base-ads.req.dto';
@@ -13,7 +14,10 @@ export class AdsService {
     userData: IUserData,
   ): Promise<BaseAdsResDto> {
     const ads = await this.adsRepository.save(
-      this.adsRepository.create({ dto }),
+      this.adsRepository.create({
+        ...dto,
+        user: { id: userData.userId },
+      }),
     );
     return AdsMapper.toResponseDTO(ads);
   }
