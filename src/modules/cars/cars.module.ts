@@ -1,38 +1,15 @@
-// import { Module } from '@nestjs/common';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-//
-// import { AWSConfigModule } from '../../config/aws/config.module';
-// import { CarEntity } from '../../database/car.entity';
-// import { AuthModule } from '../auth/auth.module';
-// import { CarBrandRepository } from '../brand/carBrand.repository';
-// import { CarModelRepository } from '../brand/carModel.repository';
-// import { CurrencyModule } from '../currency/currency.module';
-// import { CurrencyService } from '../currency/currency.service';
-// import { S3Module } from '../s3/s3.module';
-// import { UserModule } from '../user/user.module';
-// import { UserRepository } from '../user/user.repository';
-// import { CarController } from './car.controller';
-// import { CarRepository } from './car.repository';
-// import { CarService } from './car.service';
-// import { S3Service } from "../s3/s3.service";
-// import { CarsServiceService } from './cars.service.service';
-//
-// @Module({
-//   imports: [
-//     UserModule,
-//     AuthModule,
-//     TypeOrmModule.forFeature([CarEntity]),
-//     //CurrencyModule,
-//   ],
-//   controllers: [CarController],
-//   providers: [
-//     CarService,
-//     CarRepository,
-//     UserRepository,
-//     //CurrencyService,
-//     CarModelRepository,
-//     CarBrandRepository,
-//     CarsServiceService,
-//   ],
-// })
-// export class CarsModule {}
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { BrandEntity } from '../../database/entities/brand.entity';
+import { ModelEntity } from '../../database/entities/model.entity';
+import { CarsController } from './cars.controller';
+import { CarsService } from './cars.service';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([ModelEntity, BrandEntity])],
+  controllers: [CarsController],
+  providers: [CarsService],
+  exports: [CarsService],
+})
+export class CarsModule {}

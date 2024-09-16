@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsUUID } from 'class-validator';
 
-import { CurrencyEnum } from '../enum/currency.enum';
+import { CurrencyEnum } from '../../../common/global-enums/currency.enum';
 
 export class BaseAdsResDto {
   @IsUUID()

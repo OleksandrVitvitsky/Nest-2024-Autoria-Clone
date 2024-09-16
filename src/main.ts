@@ -21,6 +21,7 @@ async function bootstrap() {
     ConfigTypeToRegisterResDto.ConfigTypeToRegisterReqDto(superUserConfig),
   );
 
+
   const config = new DocumentBuilder()
     .setTitle('"Autoria Clone" API by oleksandr.vit')
     .setDescription('The API description')

@@ -18,8 +18,8 @@ import { UUID } from 'typeorm/driver/mongodb/bson.typings';
 
 import { TransformHelper } from '../../../common/helpers/transform.helper';
 import { ConditionEnum } from '../enum/condition.enum';
-import { CurrencyEnum } from '../enum/currency.enum';
-import { LocationEnum } from '../enum/location.enum';
+import { CurrencyEnum } from '../../../common/global-enums/currency.enum';
+import { LocationEnum } from '../../../common/global-enums/location.enum';
 
 export class BaseAdsReqDto {
   @ApiProperty({
@@ -106,7 +106,7 @@ export class BaseAdsReqDto {
   // @IsNotEmpty({ message: 'Бренд повинен бути обраний' })
   // brandId: number;
 
-  @ApiProperty({ example: 5, description: 'Ідентифікатор моделі автомобіля' })
+  @ApiProperty({ example: "123e4567-e89b-12d3-a456-426614174000", description: 'Ідентифікатор моделі автомобіля' })
   @IsInt()
   @IsNotEmpty({ message: 'Модель повинна бути обрана' })
   @Type(() => Number)

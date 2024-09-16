@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 
-import { CurrencyEnum } from '../../modules/advertisements/enum/currency.enum';
+import { CurrencyEnum } from '../../common/global-enums/currency.enum';
 import { TableNameEnum } from './enums/table-name.enum';
 import { ModelEntity } from './model.entity';
 import { CreateUpdateModel } from './models/create-update.model';
