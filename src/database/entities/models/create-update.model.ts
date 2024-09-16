@@ -1,4 +1,9 @@
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 export class CreateUpdateModel {
   @PrimaryGeneratedColumn('uuid')
@@ -7,17 +12,14 @@ export class CreateUpdateModel {
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
-    name: 'created_at',
   })
   @CreateDateColumn()
   createdAt: Date;
-
 
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
-    name: 'updated_at',
   })
   @UpdateDateColumn()
   updatedAt: Date;

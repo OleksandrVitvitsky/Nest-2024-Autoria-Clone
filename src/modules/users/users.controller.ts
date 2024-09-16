@@ -92,7 +92,7 @@ export class UsersController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('me')
   public async removeMe(@CurrentUser() userData: IUserData): Promise<void> {
-    return await this.usersService.removeMe(userData);
+    await this.usersService.removeMe(userData);
   }
 
   @ApiBearerAuth()

@@ -4,4 +4,5 @@ export enum TableNameEnum {
   ADS = 'ads',
   CARS = 'cars',
   BRANDS = 'brands',
+  DEALER = 'dealer',
 }

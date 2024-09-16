@@ -1,8 +1,11 @@
-import { Column, Entity, Index, OneToMany } from 'typeorm';
+import { ManyToOne } from "typeorm";
+import { Column, Entity, Index, , OneToMany } from "typeorm";
 
 import { UserRoleEnum } from '../../modules/users/enum/role.enum';
 import { UserAccountTypeEnum } from '../../modules/users/enum/user-account-type.enum';
 import { AdsEntity } from './ads.entity';
+import { DealerEntity } from "./autodealer.entity";
+
 import { TableNameEnum } from './enums/table-name.enum';
 import { CreateUpdateModel } from './models/create-update.model';
 import { RefreshTokenEntity } from './refresh-token.entity';
@@ -40,11 +43,7 @@ export class UserEntity extends CreateUpdateModel {
   @OneToMany(() => AdsEntity, (ads) => ads.user)
   ads: AdsEntity[];
 
-  //
-  //TODO
-  // @Column({ type: 'boolean', default: false })
-  // block: boolean;
-  //TODO
-  // @OneToMany(() => CarEntity, (entity) => entity.user)
-  // cars: CarEntity[];
+  @ManyToOne(() => DealerEntity, (dealer) => dealer.users)
+  dealer: DealerEntity;
+
 }

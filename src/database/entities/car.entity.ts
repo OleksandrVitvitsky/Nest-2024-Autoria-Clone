@@ -1,6 +1,7 @@
 import { Column, Entity, Index, ManyToOne, OneToMany } from 'typeorm';
 
 import { AdsEntity } from './ads.entity';
+import { DealerEntity } from './autodealer.entity';
 import { BrandEntity } from './brand.entity';
 import { TableNameEnum } from './enums/table-name.enum';
 import { CreateUpdateModel } from './models/create-update.model';
@@ -18,4 +19,7 @@ export class CarEntity extends CreateUpdateModel {
 
   @OneToMany(() => AdsEntity, (ads) => ads.model)
   ads: AdsEntity[];
+
+  @ManyToOne(() => DealerEntity, (dealer) => dealer.cars)
+  dealer?: DealerEntity;
 }
