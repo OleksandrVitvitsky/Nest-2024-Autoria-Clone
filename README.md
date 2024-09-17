@@ -67,8 +67,11 @@ $ npm run migration:run
 
 # watch mode
 $ npm run start:local
+# .env file are located in the project in the folder environments
 
-# щоб створити машинки в базі, треба залогінитись з роллю "Адмін" та піти на ендпоінт /cars/create-cars
+# if you want to create a new cars in DB, you need to login with role 'admin' and 
+# use email "admin@admin" with password "123qwe!@#QWE" and use endpoint /cars/create-cars with POST method and body:[] (empty array)
+
 
 
 
