@@ -68,6 +68,8 @@ $ npm run migration:run
 # watch mode
 $ npm run start:local
 
+# щоб створити машинки в базі, треба залогінитись з роллю "Адмін" та піти на ендпоінт /cars/create-cars
+
 
 
 
