@@ -5,6 +5,7 @@ import configuration from '../config/configuration';
 import { AdsModule } from './advertisements/ads.module';
 import { AuthModule } from './auth/auth.module';
 import { CarsModule } from './cars/cars.module';
+import { DealersModule } from "./dealers/dealers.module";
 import { FileStorageModule } from './file-storage/file-storage.module';
 import { PostgresModule } from './postgres/postgres.module';
 import { RedisModule } from './redis/redis.module';
@@ -25,6 +26,7 @@ import { UsersModule } from './users/users.module';
     FileStorageModule,
     AdsModule,
     CarsModule,
+    DealersModule,
   ],
   controllers: [],
   providers: [],

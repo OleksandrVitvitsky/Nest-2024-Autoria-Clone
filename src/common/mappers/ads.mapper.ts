@@ -1,5 +1,7 @@
 import { AdsEntity } from '../../database/entities/ads.entity';
+import { CarEntity } from "../../database/entities/car.entity";
 import { BaseAdsResDto } from '../../modules/advertisements/res/base-ads.res.dto';
+import { CarsResDto } from "../../modules/cars/res/cars.res.dto";
 
 export class AdsMapper {
   public static toResponseDTO(data: AdsEntity): BaseAdsResDto {
@@ -13,7 +15,8 @@ export class AdsMapper {
       condition: data.condition,
       year: data.year,
       mileage: data.mileage,
-      //brand: data.brand,
+      isActive: data.isActive,
+      editQuantity: data.editQuantity,
       modelId: data.model.id,
       photos: data.photos,
       userId: data.user.id,
@@ -22,12 +25,7 @@ export class AdsMapper {
     };
   }
 
-  // public static toIUserData(user: UserEntity, payload: IJwtPayload): IUserData {
-  //   return {
-  //     userId: payload.userId,
-  //     deviceId: payload.deviceId,
-  //     email: user.email,
-  //     role: user.role,
-  //   };
-  // }
+  public static toResponseDtos(adsList: AdsEntity[]): BaseAdsResDto[] {
+    return adsList.map(AdsMapper.toResponseDTO);
+  }
 }

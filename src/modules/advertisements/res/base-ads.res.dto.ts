@@ -15,7 +15,8 @@ export class BaseAdsResDto {
   condition: string;
   year: number;
   mileage: number;
-  // brand: string;
+  isActive: boolean;
+  editQuantity: number;
   @IsUUID()
   modelId: string;
   photos: string[];

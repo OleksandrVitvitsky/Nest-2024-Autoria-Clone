@@ -10,6 +10,6 @@ export class BrandEntity extends CreateUpdateModel {
   @Column('text')
   name: string;
 
-  @OneToMany(() => CarEntity, (model) => model.brand)
-  models: CarEntity[];
+  @OneToMany(() => CarEntity, (model) => model.brand,{nullable:true})
+  models?: CarEntity[];
 }

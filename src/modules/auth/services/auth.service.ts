@@ -5,6 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+import { DealerRepositoty } from "../../repository/services/dealerRepositoty";
 
 import { RefreshTokenRepository } from '../../repository/services/refresh-token.repository';
 import { UserRepository } from '../../repository/services/user.repository';
@@ -28,6 +29,7 @@ export class AuthService {
     private readonly tokenService: TokenService,
     private readonly authCacheService: AuthCacheService,
     private readonly refreshTokenRepository: RefreshTokenRepository,
+    private readonly dealerRepository: DealerRepositoty,
   ) {}
 
   async regenerateTokens(userData: IUserData): Promise<TokenPairResDto> {
@@ -65,8 +67,21 @@ export class AuthService {
       return;
     }
     const password = await bcrypt.hash(dto.password, 7);
+    let dealer = null;
+    if (dto.dealer) {
+      // Знайти автосалон за його ID
+      dealer = await this.dealerRepository.findOne({ where: { id: dto.dealer } });
+      if (!dealer) {
+        throw new Error('Dealer not found');
+      }
+    }
+
     const user = await this.userRepository.save(
-      this.userRepository.create({ ...dto, password }),
+      this.userRepository.create({
+        ...dto,
+        password,
+        dealer, // Передати об'єкт автосалону
+      }),
     );
 
     const tokens = await this.tokenService.generateAuthTokens({
@@ -106,6 +121,7 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       role: user.role,
+      accountType: user.accountType,
     });
     const userEntity = await this.userRepository.findOneBy({ id: user.id });
     return { user: UserMapper.toResponseDTO(userEntity), tokens };

@@ -5,11 +5,11 @@ import {
   Get,
   HttpCode,
   HttpStatus,
-  Param,
+  Param, ParseUUIDPipe,
   Post,
   Put,
-  UseGuards,
-} from '@nestjs/common';
+  UseGuards
+} from "@nestjs/common";
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -42,7 +42,6 @@ export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
   @ApiOperation({ summary: 'Create new models (role must be ADMIN)' })
-  //@UseGuards(BadWordsValidation, StatusAccountValidateGuard, CarValidationGuard)
   @Post('create-cars')
   @ApiBody({ type: [CreateCarsReqDto] })
   @ApiResponse({
@@ -83,6 +82,7 @@ export class CarsController {
   public async getCars(): Promise<CarsResDto[]> {
     return await this.carsService.getCars();
   }
+
   @ApiOperation({ summary: 'Get car by id' })
   @ApiResponse({
     status: 200,
@@ -99,9 +99,11 @@ export class CarsController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
   @Get('get-car/:id')
   @Roles(UserRoleEnum.ADMIN)
-  public async getCarById(@Param('id') id: string): Promise<CarsResDto> {
+  public async getCarById(  @Param('id', ParseUUIDPipe) id: string): Promise<CarsResDto> {
     return await this.carsService.getCarById(id);
   }
+
+
   @ApiOperation({ summary: 'Get brand with models by ID' })
   @ApiResponse({
     status: 200,
@@ -117,9 +119,10 @@ export class CarsController {
   })
   @ApiResponse({ status: 500, description: 'Internal server error' })
   @Get('get-brand/:id')
-  public async getBrandById(@Param('id') id: string): Promise<CarsResDto[]> {
+  public async getBrandById(@Param('id', ParseUUIDPipe) id: string): Promise<CarsResDto[]> {
     return await this.carsService.getBrandById(id);
   }
+
   @ApiOperation({ summary: 'Update brand by ID (role must be ADMIN)' })
   @ApiResponse({
     status: 200,
@@ -138,7 +141,7 @@ export class CarsController {
   @Put('update-brand/:id')
   @Roles(UserRoleEnum.ADMIN)
   public async updateBrand(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: BrandReqDto,
   ): Promise<BrandResDto> {
     return await this.carsService.updateBrand(id, dto);
@@ -157,7 +160,7 @@ export class CarsController {
   @ApiResponse({ status: 500, description: 'Internal server error' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('delete-brand/:id')
-  public async deleteBrand(@Param('id') id: string): Promise<void> {
+  public async deleteBrand(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     await this.carsService.deleteBrand(id);
   }
 
@@ -179,8 +182,8 @@ export class CarsController {
   @Post('add-model/:brandId')
   @Roles(UserRoleEnum.ADMIN)
   public async addModelToBrand(
-    @Param('brandId') brandId: string,
-    @Body() dto: ModelReqDto,
+    @Param('brandId', ParseUUIDPipe) brandId: string,
+    @Body() dto: ModelReqDto
   ): Promise<CarsResDto> {
     return await this.carsService.addModelToBrand(brandId, dto);
   }
@@ -203,7 +206,7 @@ export class CarsController {
   @Put('update-model/:id')
   @Roles(UserRoleEnum.ADMIN)
   public async updateModel(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() dto: ModelReqDto,
   ): Promise<CarsResDto> {
     return await this.carsService.updateModel(id, dto);
@@ -221,7 +224,7 @@ export class CarsController {
   @Delete('delete-model/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @Roles(UserRoleEnum.ADMIN)
-  public async deleteModel(@Param('id') id: string): Promise<void> {
+  public async deleteModel(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     await this.carsService.deleteModel(id);
   }
 }

@@ -1,9 +1,10 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm";
 
 import { CurrencyEnum } from '../../common/global-enums/currency.enum';
-import { DealerEntity } from "./autodealer.entity";
-import { TableNameEnum } from './enums/table-name.enum';
+import { AdViewEntity } from "./ads.views.entity";
+import { DealerEntity } from './dealer.entity';
 import { CarEntity } from './car.entity';
+import { TableNameEnum } from './enums/table-name.enum';
 import { CreateUpdateModel } from './models/create-update.model';
 import { UserEntity } from './user.entity';
 
@@ -30,8 +31,14 @@ export class AdsEntity extends CreateUpdateModel {
   @Column('int')
   year: number;
 
+  @Column({ type: 'boolean', default: true })
+  isActive: boolean;
+
   @Column('int')
   mileage: number;
+
+  @Column('int', { default: 0 })
+  editQuantity: number;
 
   @ManyToOne(() => CarEntity, (model) => model.ads)
   model: CarEntity;
@@ -42,6 +49,7 @@ export class AdsEntity extends CreateUpdateModel {
   @ManyToOne(() => UserEntity, (user) => user.ads)
   user: UserEntity;
 
-  @ManyToOne(() => DealerEntity, (Dealer) => Dealer.ads)
-  Dealer: DealerEntity;
+  @OneToMany(() => AdViewEntity, (view) => view.ad)
+  views: AdViewEntity[];
+
 }

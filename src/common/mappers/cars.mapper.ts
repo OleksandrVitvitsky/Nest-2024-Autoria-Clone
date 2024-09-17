@@ -2,7 +2,7 @@ import { CarEntity} from "../../database/entities/car.entity";
 import { CarsResDto } from '../../modules/cars/res/cars.res.dto';
 
 export class CarsMapper {
-  static toResponseDto(model: CarEntity): CarsResDto {
+  public static toResponseDto(model: CarEntity): CarsResDto {
     return {
       id: model.id,
       name: model.name,
@@ -13,7 +13,7 @@ export class CarsMapper {
     };
   }
 
-  static toResponseDtos(models: CarEntity[]): CarsResDto[] {
+  public static toResponseDtos(models: CarEntity[]): CarsResDto[] {
     return models.map(CarsMapper.toResponseDto);
   }
 }

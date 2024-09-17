@@ -7,10 +7,10 @@ import {
   IsNotEmpty,
   IsOptional,
   IsPhoneNumber,
-  IsString,
+  IsString, IsUUID,
   Length,
-  Matches,
-} from 'class-validator';
+  Matches
+} from "class-validator";
 
 import { TransformHelper } from '../../../../common/helpers/transform.helper';
 import { UserRoleEnum } from '../../enum/role.enum';
@@ -21,7 +21,6 @@ export class BaseUserReqDto {
   @IsString()
   @Length(2, 50)
   @Transform(TransformHelper.trim)
-  @Transform(TransformHelper.toLowerCase)
   @Type(() => String)
   userName?: string;
 
@@ -73,4 +72,14 @@ export class BaseUserReqDto {
   @IsEnum(UserAccountTypeEnum)
   @IsIn([UserAccountTypeEnum.BASIC])
   accountType?: UserAccountTypeEnum;
+
+   @ApiProperty({
+     description: 'ID автосалону, якщо користувач належить до автосалону',
+     example: '1e43a56d-9307-4f50-8e1c-9784b15e8c3f',
+     required: false,
+   })
+   @IsOptional()
+   @IsUUID()
+   dealer?: string;
+
 }

@@ -1,6 +1,6 @@
 import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsIn, IsNotEmpty, IsString } from 'class-validator';
+import { IsIn, IsNotEmpty, IsOptional, IsString, IsUUID } from "class-validator";
 
 import { TransformHelper } from '../../../../common/helpers/transform.helper';
 import { UserRoleEnum } from '../../../users/enum/role.enum';
@@ -18,11 +18,19 @@ export class RegisterManagerReqDto extends PickType(BaseAuthReqDto, [
     enum: ['manager'],
   })
   @Transform(TransformHelper.trim)
-  @Transform(TransformHelper.toLowerCase)
   @IsString()
   @IsNotEmpty({ message: 'The role must not be empty' })
   @IsIn([UserRoleEnum.MANAGER], {
     message: 'Role must be manager',
   })
   role: UserRoleEnum;
+
+  @ApiProperty({
+    description: 'ID автосалону, якщо користувач належить до автосалону',
+    example: '1e43a56d-9307-4f50-8e1c-9784b15e8c3f',
+    required: false,
+  })
+  @IsOptional()
+  @IsUUID()
+  dealer?: string;
 }

@@ -12,10 +12,11 @@ export class UserMapper {
       userName: data.userName,
       email: data.email,
       image: data.image ? `${awsConfig.bucketUrl}/${data.image}` : null,
-      phone: data.phone,
+      phone: data.phone ? data.phone : null,
       accountType: data.accountType,
       role: data.role,
-      //isFollowed: data.followings?.length > 0 || false,
+      dealer: data.dealer ? data.dealer.id : null,
+      isActive: data.isActive,
     };
   }
 
@@ -25,6 +26,7 @@ export class UserMapper {
       deviceId: payload.deviceId,
       email: user.email,
       role: user.role,
+      accountType: user.accountType,
     };
   }
 }

@@ -6,7 +6,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { RolesGuard } from "../../common/guards/roles.guard";
 
 import { CurrentUser } from './decorators/current-user.decorator';
@@ -24,18 +24,19 @@ import { AuthService } from './services/auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+@ApiOperation({ summary: 'Register new user' })
   @SkipAuth()
   @Post('register')
   public async register(@Body() dto: RegisterReqDto): Promise<AuthResDto> {
     return await this.authService.register(dto);
   }
-
+@ApiOperation({ summary: 'Login user' })
   @SkipAuth()
   @Post('login')
   public async signIn(@Body() dto: LoginReqDto): Promise<AuthResDto> {
     return await this.authService.login(dto);
   }
-
+@ApiOperation({ summary: 'Get new access and refresh tokens' })
   @ApiBearerAuth()
   @UseGuards(JwtRefreshGuard)
   @SkipAuth()
@@ -45,7 +46,7 @@ export class AuthController {
   ): Promise<TokenPairResDto> {
     return await this.authService.refresh(userData);
   }
-
+@ApiOperation({ summary: 'Logout user' })
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @Post('sign-out')

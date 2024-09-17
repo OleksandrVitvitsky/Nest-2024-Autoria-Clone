@@ -19,6 +19,7 @@ import {
   ApiConsumes,
   ApiForbiddenResponse,
   ApiNoContentResponse,
+  ApiOperation,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
@@ -41,24 +42,9 @@ import { UsersService } from './users.service';
 @Controller('users')
 @UseGuards(RolesGuard)
 export class UsersController {
-  constructor(
-    private readonly usersService: UsersService,
-    private readonly managerService: ManagerService,
-  ) {}
+  constructor(private readonly usersService: UsersService) {}
 
-  @ApiBearerAuth()
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiForbiddenResponse({ description: 'Forbidden' })
-  @ApiBadRequestResponse({ description: 'Bad Request' })
-  @ApiConflictResponse({ description: 'Conflict' })
-  @Post('create-manager')
-  @Roles(UserRoleEnum.ADMIN)
-  public async createManager(
-    @Body() dto: RegisterManagerReqDto,
-  ): Promise<AuthResDto> {
-    return await this.managerService.createManager(dto);
-  }
-
+  @ApiOperation({ summary: 'Find me' })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -69,7 +55,7 @@ export class UsersController {
     const result = await this.usersService.findMe(userData);
     return UserMapper.toResponseDTO(result);
   }
-
+  @ApiOperation({ summary: 'Update me' })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -83,7 +69,7 @@ export class UsersController {
     const result = await this.usersService.updateMe(userData, dto);
     return UserMapper.toResponseDTO(result);
   }
-
+  @ApiOperation({ summary: 'Remove me' })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
@@ -94,7 +80,7 @@ export class UsersController {
   public async removeMe(@CurrentUser() userData: IUserData): Promise<void> {
     await this.usersService.removeMe(userData);
   }
-
+  @ApiOperation({ summary: 'Upload avatar' })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
@@ -109,7 +95,7 @@ export class UsersController {
   ): Promise<void> {
     await this.usersService.uploadAvatar(userData, avatar);
   }
-
+  @ApiOperation({ summary: 'Delete avatar' })
   @ApiBearerAuth()
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('me/avatar')
