@@ -45,7 +45,7 @@
 
 ## Description
 
- Test work with [Nest](https://github.com/nestjs/nest) by Oleksandr Vitvitsky
+ Test work with [Nest](https://github.com/nestjs/nest) by Oleksandr Vitvitsky (Jan 2024)
 
 ## Project setup
 
