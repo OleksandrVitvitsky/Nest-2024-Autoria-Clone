@@ -70,7 +70,7 @@ $ npm run start:local
 # .env file are located in the project in the folder environments
 
 # if you want to create a new cars in DB, you need to login with role 'admin' and 
-# use email "admin@admin" with password "123qwe!@#QWE" and use endpoint /cars/create-cars with POST method and body:[] (empty array)
+# use email "admin@admin.com" with password "123qwe!@#QWE" and use endpoint /cars/create-cars with POST method and body:[] (empty array)
 
 
 
